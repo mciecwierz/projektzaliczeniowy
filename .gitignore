@@ -1,0 +1,11 @@
+temp/keyvault/template.json
+temp/keyvault/parameters.json
+temp/datafactory/datafactory.json
+temp/datafactory/ADFTutorialARM-Parameters.json
+temp/databricks/template.json
+temp/databricks/parameters.json
+temp/przypadne_kody.txt
+temp/test_01-storageaccoun .json
+backup/1/00-deployment.ps1
+backup/1/01-storageaccount.json
+backup/1/01-storageaccount.parameters.json
