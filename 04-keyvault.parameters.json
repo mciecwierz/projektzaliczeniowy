@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "name": {
-            "value": "ProjZalKeyVault"
+            "value": "ProjZalKeyVault2"
         },
         "sku": {
             "value": "Standard"
