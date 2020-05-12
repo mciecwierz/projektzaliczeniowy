@@ -1,0 +1,74 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "name": "StorageAccount",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri":"https://raw.githubusercontent.com/mciecwierz/projektzaliczeniowy/master/01-storageaccount.json",
+          "contentVersion":"1.0.0.0"
+        },
+        "parametersLink": {
+        "uri":"https://raw.githubusercontent.com/mciecwierz/projektzaliczeniowy/master/01-storageaccount.parameters.json",
+        "contentVersion":"1.0.0.0"
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "name": "DataFactory",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri":"https://raw.githubusercontent.com/mciecwierz/projektzaliczeniowy/master/02-datafactory.json",
+          "contentVersion":"1.0.0.0"
+        },
+        "parametersLink": {
+        "uri":"https://raw.githubusercontent.com/mciecwierz/projektzaliczeniowy/master/02-datafactory.parameters.json",
+        "contentVersion":"1.0.0.0"
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "name": "Databricks",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri":"https://raw.githubusercontent.com/mciecwierz/projektzaliczeniowy/master/03-databricks.json",
+          "contentVersion":"1.0.0.0"
+        },
+        "parametersLink": {
+        "uri":"https://raw.githubusercontent.com/mciecwierz/projektzaliczeniowy/master/03-databricks.parameters.json",
+        "contentVersion":"1.0.0.0"
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "name": "KeyVault",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri":"https://raw.githubusercontent.com/mciecwierz/projektzaliczeniowy/master/04-keyvault.json",
+          "contentVersion":"1.0.0.0"
+        },
+        "parametersLink": {
+        "uri":"https://raw.githubusercontent.com/mciecwierz/projektzaliczeniowy/master/04-keyvault.parameters.json",
+        "contentVersion":"1.0.0.0"
+        }
+      }
+    }
+  ],
+  "outputs": {
+  }
+}
