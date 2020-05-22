@@ -23,7 +23,6 @@
                 "description": "Replikacja magazynu danych"
             }
         }
-
     },
     "variables": {},
     "resources": [

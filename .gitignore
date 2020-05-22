@@ -9,3 +9,4 @@ temp/test_01-storageaccoun .json
 backup/1/00-deployment.ps1
 backup/1/01-storageaccount.json
 backup/1/01-storageaccount.parameters.json
+temp/test.json
