@@ -1,0 +1,6 @@
+{
+	"name": "S3ToDataLake",
+	"properties": {
+		"annotations": []
+	}
+}
