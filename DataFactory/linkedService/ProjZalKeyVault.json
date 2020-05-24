@@ -1,0 +1,10 @@
+{
+	"name": "ProjZalKeyVault",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://ProjZal2020KeyVault.vault.azure.net/"
+		}
+	}
+}
