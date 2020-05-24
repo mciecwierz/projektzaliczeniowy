@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText1",
+	"name": "SourceATMData",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "S3Connection",
