@@ -67,7 +67,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "test_partitions*.csv",
+						"value": "@activity('S3ToAzure').output",
 						"type": "Expression"
 					},
 					"activities": [
@@ -89,7 +89,7 @@
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
-										"wildcardFileName": "*",
+										"wildcardFileName": "test_partitions*.csv",
 										"enablePartitionDiscovery": false
 									},
 									"formatSettings": {
@@ -104,7 +104,7 @@
 									"formatSettings": {
 										"type": "DelimitedTextWriteSettings",
 										"quoteAllText": true,
-										"fileExtension": ".txt"
+										"fileExtension": ".csv"
 									}
 								},
 								"enableStaging": false
@@ -118,10 +118,7 @@
 							"outputs": [
 								{
 									"referenceName": "ArchivedATMData",
-									"type": "DatasetReference",
-									"parameters": {
-										"fileName": "@item()"
-									}
+									"type": "DatasetReference"
 								}
 							]
 						}
