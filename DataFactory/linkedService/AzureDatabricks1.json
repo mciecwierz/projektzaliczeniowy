@@ -13,13 +13,7 @@
 				},
 				"secretName": "AccessTokenDatabricks"
 			},
-			"newClusterNodeType": "Standard_F4s",
-			"newClusterNumOfWorker": "1",
-			"newClusterSparkEnvVars": {
-				"PYSPARK_PYTHON": "/databricks/python3/bin/python3"
-			},
-			"newClusterVersion": "6.5.x-scala2.11",
-			"newClusterDriverNodeType": ""
+			"existingClusterId": "0522-174505-ozone806"
 		}
 	}
 }
