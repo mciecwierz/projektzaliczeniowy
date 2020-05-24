@@ -11,8 +11,7 @@
 			"location": {
 				"type": "AmazonS3Location",
 				"bucketName": "projektzaliczeniowy2020",
-				"folderPath": "atm_date",
-				"fileName": "@item().name"
+				"folderPath": "atm_date"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
