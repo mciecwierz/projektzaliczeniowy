@@ -1,0 +1,25 @@
+{
+	"name": "AzureDatabricks1",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "https://adb-4214707289490253.13.azuredatabricks.net",
+			"accessToken": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ProjZalKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "AccessTokenDatabricks"
+			},
+			"newClusterNodeType": "Standard_F4s",
+			"newClusterNumOfWorker": "1",
+			"newClusterSparkEnvVars": {
+				"PYSPARK_PYTHON": "/databricks/python3/bin/python3"
+			},
+			"newClusterVersion": "6.5.x-scala2.11",
+			"newClusterDriverNodeType": ""
+		}
+	}
+}
