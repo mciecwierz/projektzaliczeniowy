@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "test_partitions*.csv",
 				"folderPath": "atm",
 				"fileSystem": "input"
 			},
