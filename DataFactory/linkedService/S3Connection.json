@@ -1,0 +1,19 @@
+{
+	"name": "S3Connection",
+	"properties": {
+		"annotations": [],
+		"type": "AmazonS3",
+		"typeProperties": {
+			"serviceUrl": "",
+			"accessKeyId": "AKIAIDNCNSE65LTVUTYA",
+			"secretAccessKey": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ProjZalKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "S3SecretKey"
+			}
+		}
+	}
+}
