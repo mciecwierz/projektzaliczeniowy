@@ -98,7 +98,7 @@
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
 										"wildcardFolderPath": "atm",
-										"wildcardFileName": "*",
+										"wildcardFileName": "test_partitions*.csv",
 										"enablePartitionDiscovery": false
 									},
 									"formatSettings": {
