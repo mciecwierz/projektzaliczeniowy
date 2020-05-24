@@ -120,7 +120,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "TargetATMData",
+									"referenceName": "SourceArchive",
 									"type": "DatasetReference"
 								}
 							],
