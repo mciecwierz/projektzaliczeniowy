@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "ProjZalFabrykaDanych"
+		},
+		"DataLakeGen2Connection_accountKey": {
+			"value": ""
+		},
+		"SourceMetadata_accountKey": {
+			"value": ""
+		},
+		"ProjZalKeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://ProjZal2020KeyVault.vault.azure.net/"
+		},
+		"S3Connection_properties_typeProperties_accessKeyId": {
+			"value": "AKIAIDNCNSE65LTVUTYA"
+		},
+		"DataLakeGen2Connection_properties_typeProperties_url": {
+			"value": "https://projektzaldatalake2020.dfs.core.windows.net"
+		},
+		"SourceMetadata_properties_typeProperties_url": {
+			"value": "https://projektzaldatalake2020.dfs.core.windows.net"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
