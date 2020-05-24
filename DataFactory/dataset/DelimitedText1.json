@@ -1,0 +1,156 @@
+{
+	"name": "DelimitedText1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "S3Connection",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AmazonS3Location",
+				"bucketName": "projektzaliczeniowy2020",
+				"folderPath": "atm_date"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "year",
+				"type": "String"
+			},
+			{
+				"name": "month",
+				"type": "String"
+			},
+			{
+				"name": "day",
+				"type": "String"
+			},
+			{
+				"name": "weekday",
+				"type": "String"
+			},
+			{
+				"name": "hour",
+				"type": "String"
+			},
+			{
+				"name": "atm_status",
+				"type": "String"
+			},
+			{
+				"name": "atm_id",
+				"type": "String"
+			},
+			{
+				"name": "atm_manufacturer",
+				"type": "String"
+			},
+			{
+				"name": "atm_location",
+				"type": "String"
+			},
+			{
+				"name": "atm_streetname",
+				"type": "String"
+			},
+			{
+				"name": "atm_street_number",
+				"type": "String"
+			},
+			{
+				"name": "atm_zipcode",
+				"type": "String"
+			},
+			{
+				"name": "atm_lat",
+				"type": "String"
+			},
+			{
+				"name": "atm_lon",
+				"type": "String"
+			},
+			{
+				"name": "currency",
+				"type": "String"
+			},
+			{
+				"name": "card_type",
+				"type": "String"
+			},
+			{
+				"name": "service",
+				"type": "String"
+			},
+			{
+				"name": "message_code",
+				"type": "String"
+			},
+			{
+				"name": "message_text",
+				"type": "String"
+			},
+			{
+				"name": "weather_lat",
+				"type": "String"
+			},
+			{
+				"name": "weather_lon",
+				"type": "String"
+			},
+			{
+				"name": "weather_city_id",
+				"type": "String"
+			},
+			{
+				"name": "weather_city_name",
+				"type": "String"
+			},
+			{
+				"name": "temp",
+				"type": "String"
+			},
+			{
+				"name": "pressure",
+				"type": "String"
+			},
+			{
+				"name": "humidity",
+				"type": "String"
+			},
+			{
+				"name": "wind_speed",
+				"type": "String"
+			},
+			{
+				"name": "wind_deg",
+				"type": "String"
+			},
+			{
+				"name": "rain_3h",
+				"type": "String"
+			},
+			{
+				"name": "clouds_all",
+				"type": "String"
+			},
+			{
+				"name": "weather_id",
+				"type": "String"
+			},
+			{
+				"name": "weather_main",
+				"type": "String"
+			},
+			{
+				"name": "weather_description",
+				"type": "String"
+			}
+		]
+	}
+}
