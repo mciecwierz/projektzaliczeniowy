@@ -10,8 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AmazonS3Location",
-				"bucketName": "projektzaliczeniowy2020",
-				"folderPath": "atm_date"
+				"bucketName": "projektzaliczeniowy2020"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
