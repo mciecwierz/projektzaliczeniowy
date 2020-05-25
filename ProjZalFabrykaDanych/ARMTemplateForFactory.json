@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'SourceMetadata'"
 		},
+		"DataLakeGen2Connection_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://projektzaldatalake2020.dfs.core.windows.net"
+		},
 		"ProjZalKeyVault_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://ProjZal2020KeyVault.vault.azure.net/"
@@ -22,10 +26,6 @@
 		"S3Connection_properties_typeProperties_accessKeyId": {
 			"type": "string",
 			"defaultValue": "AKIAIDNCNSE65LTVUTYA"
-		},
-		"DataLakeGen2Connection_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://projektzaldatalake2020.dfs.core.windows.net"
 		},
 		"SourceMetadata_properties_typeProperties_url": {
 			"type": "string",
@@ -36,348 +36,6 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
-		{
-			"name": "[concat(parameters('factoryName'), '/ProjZalKeyVault')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureKeyVault",
-				"typeProperties": {
-					"baseUrl": "[parameters('ProjZalKeyVault_properties_typeProperties_baseUrl')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/S3Connection')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AmazonS3",
-				"typeProperties": {
-					"serviceUrl": "",
-					"accessKeyId": "[parameters('S3Connection_properties_typeProperties_accessKeyId')]",
-					"secretAccessKey": {
-						"type": "AzureKeyVaultSecret",
-						"store": {
-							"referenceName": "ProjZalKeyVault",
-							"type": "LinkedServiceReference"
-						},
-						"secretName": "S3SecretKey"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ProjZalKeyVault')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DataLakeGen2Connection')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('DataLakeGen2Connection_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('DataLakeGen2Connection_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SourceATMData')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "S3Connection",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AmazonS3Location",
-						"bucketName": "projektzaliczeniowy2020",
-						"folderPath": "atm_date"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "year",
-						"type": "String"
-					},
-					{
-						"name": "month",
-						"type": "String"
-					},
-					{
-						"name": "day",
-						"type": "String"
-					},
-					{
-						"name": "weekday",
-						"type": "String"
-					},
-					{
-						"name": "hour",
-						"type": "String"
-					},
-					{
-						"name": "atm_status",
-						"type": "String"
-					},
-					{
-						"name": "atm_id",
-						"type": "String"
-					},
-					{
-						"name": "atm_manufacturer",
-						"type": "String"
-					},
-					{
-						"name": "atm_location",
-						"type": "String"
-					},
-					{
-						"name": "atm_streetname",
-						"type": "String"
-					},
-					{
-						"name": "atm_street_number",
-						"type": "String"
-					},
-					{
-						"name": "atm_zipcode",
-						"type": "String"
-					},
-					{
-						"name": "atm_lat",
-						"type": "String"
-					},
-					{
-						"name": "atm_lon",
-						"type": "String"
-					},
-					{
-						"name": "currency",
-						"type": "String"
-					},
-					{
-						"name": "card_type",
-						"type": "String"
-					},
-					{
-						"name": "service",
-						"type": "String"
-					},
-					{
-						"name": "message_code",
-						"type": "String"
-					},
-					{
-						"name": "message_text",
-						"type": "String"
-					},
-					{
-						"name": "weather_lat",
-						"type": "String"
-					},
-					{
-						"name": "weather_lon",
-						"type": "String"
-					},
-					{
-						"name": "weather_city_id",
-						"type": "String"
-					},
-					{
-						"name": "weather_city_name",
-						"type": "String"
-					},
-					{
-						"name": "temp",
-						"type": "String"
-					},
-					{
-						"name": "pressure",
-						"type": "String"
-					},
-					{
-						"name": "humidity",
-						"type": "String"
-					},
-					{
-						"name": "wind_speed",
-						"type": "String"
-					},
-					{
-						"name": "wind_deg",
-						"type": "String"
-					},
-					{
-						"name": "rain_3h",
-						"type": "String"
-					},
-					{
-						"name": "clouds_all",
-						"type": "String"
-					},
-					{
-						"name": "weather_id",
-						"type": "String"
-					},
-					{
-						"name": "weather_main",
-						"type": "String"
-					},
-					{
-						"name": "weather_description",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/S3Connection')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/TargetATMData')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "DataLakeGen2Connection",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": "atm",
-						"fileSystem": "input"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/DataLakeGen2Connection')]"
-			]
-		},
 		{
 			"name": "[concat(parameters('factoryName'), '/S3ToDataLake')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
@@ -542,11 +200,39 @@
 								"childItems"
 							],
 							"storeSettings": {
-								"type": "AzureBlobFSReadSettings"
+								"type": "AzureBlobFSReadSettings",
+								"recursive": true
 							},
 							"formatSettings": {
 								"type": "DelimitedTextReadSettings"
 							}
+						}
+					},
+					{
+						"name": "csvToParquet",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "S3ToAzure",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Shared/Prophet/csvToParquet"
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricks1",
+							"type": "LinkedServiceReference"
 						}
 					}
 				],
@@ -555,26 +241,329 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/SourceATMData')]",
 				"[concat(variables('factoryId'), '/datasets/TargetATMData')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks1')]",
 				"[concat(variables('factoryId'), '/datasets/SourceArchive')]",
 				"[concat(variables('factoryId'), '/datasets/Archival')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/SourceMetadata')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"name": "[concat(parameters('factoryName'), '/Archival')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DataLakeGen2Connection",
+					"type": "LinkedServiceReference"
+				},
 				"annotations": [],
-				"type": "AzureBlobFS",
+				"type": "DelimitedText",
 				"typeProperties": {
-					"url": "[parameters('SourceMetadata_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('SourceMetadata_accountKey')]"
-					}
-				}
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": {
+							"value": "archived/@{formatDateTime(utcnow(),'yyyy')}-@{formatDateTime(utcnow(),'MM')}-@{formatDateTime(utcnow(),'dd')}",
+							"type": "Expression"
+						},
+						"fileSystem": "input"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DataLakeGen2Connection')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceATMData')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "S3Connection",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AmazonS3Location",
+						"bucketName": "projektzaliczeniowy2020",
+						"folderPath": "atm_date"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "year",
+						"type": "String"
+					},
+					{
+						"name": "month",
+						"type": "String"
+					},
+					{
+						"name": "day",
+						"type": "String"
+					},
+					{
+						"name": "weekday",
+						"type": "String"
+					},
+					{
+						"name": "hour",
+						"type": "String"
+					},
+					{
+						"name": "atm_status",
+						"type": "String"
+					},
+					{
+						"name": "atm_id",
+						"type": "String"
+					},
+					{
+						"name": "atm_manufacturer",
+						"type": "String"
+					},
+					{
+						"name": "atm_location",
+						"type": "String"
+					},
+					{
+						"name": "atm_streetname",
+						"type": "String"
+					},
+					{
+						"name": "atm_street_number",
+						"type": "String"
+					},
+					{
+						"name": "atm_zipcode",
+						"type": "String"
+					},
+					{
+						"name": "atm_lat",
+						"type": "String"
+					},
+					{
+						"name": "atm_lon",
+						"type": "String"
+					},
+					{
+						"name": "currency",
+						"type": "String"
+					},
+					{
+						"name": "card_type",
+						"type": "String"
+					},
+					{
+						"name": "service",
+						"type": "String"
+					},
+					{
+						"name": "message_code",
+						"type": "String"
+					},
+					{
+						"name": "message_text",
+						"type": "String"
+					},
+					{
+						"name": "weather_lat",
+						"type": "String"
+					},
+					{
+						"name": "weather_lon",
+						"type": "String"
+					},
+					{
+						"name": "weather_city_id",
+						"type": "String"
+					},
+					{
+						"name": "weather_city_name",
+						"type": "String"
+					},
+					{
+						"name": "temp",
+						"type": "String"
+					},
+					{
+						"name": "pressure",
+						"type": "String"
+					},
+					{
+						"name": "humidity",
+						"type": "String"
+					},
+					{
+						"name": "wind_speed",
+						"type": "String"
+					},
+					{
+						"name": "wind_deg",
+						"type": "String"
+					},
+					{
+						"name": "rain_3h",
+						"type": "String"
+					},
+					{
+						"name": "clouds_all",
+						"type": "String"
+					},
+					{
+						"name": "weather_id",
+						"type": "String"
+					},
+					{
+						"name": "weather_main",
+						"type": "String"
+					},
+					{
+						"name": "weather_description",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/S3Connection')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceArchive')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DataLakeGen2Connection",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "*",
+						"folderPath": "atm",
+						"fileSystem": "input"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DataLakeGen2Connection')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/SourceMetadata')]",
@@ -705,7 +694,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Archival')]",
+			"name": "[concat(parameters('factoryName'), '/TargetATMData')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -718,37 +707,6 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"folderPath": {
-							"value": "archived/@{formatDateTime(utcnow(),'yyyy')}/@{formatDateTime(utcnow(),'MM')}/@{formatDateTime(utcnow(),'dd')}",
-							"type": "Expression"
-						},
-						"fileSystem": "input"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/DataLakeGen2Connection')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SourceArchive')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "DataLakeGen2Connection",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "*",
 						"folderPath": "atm",
 						"fileSystem": "input"
 					},
@@ -861,6 +819,106 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/DataLakeGen2Connection')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricks1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-4214707289490253.13.azuredatabricks.net",
+					"accessToken": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "ProjZalKeyVault",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "AccessTokenDatabricks"
+					},
+					"newClusterNodeType": "Standard_F4s",
+					"newClusterNumOfWorker": "1",
+					"newClusterSparkEnvVars": {
+						"PYSPARK_PYTHON": "/databricks/python3/bin/python3"
+					},
+					"newClusterVersion": "6.5.x-scala2.11"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ProjZalKeyVault')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DataLakeGen2Connection')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('DataLakeGen2Connection_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('DataLakeGen2Connection_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ProjZalKeyVault')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('ProjZalKeyVault_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/S3Connection')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AmazonS3",
+				"typeProperties": {
+					"serviceUrl": "",
+					"accessKeyId": "[parameters('S3Connection_properties_typeProperties_accessKeyId')]",
+					"secretAccessKey": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "ProjZalKeyVault",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "S3SecretKey"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ProjZalKeyVault')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceMetadata')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('SourceMetadata_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('SourceMetadata_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/projzal-trigger')]",

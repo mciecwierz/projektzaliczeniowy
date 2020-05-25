@@ -11,14 +11,14 @@
 		"SourceMetadata_accountKey": {
 			"value": ""
 		},
+		"DataLakeGen2Connection_properties_typeProperties_url": {
+			"value": "https://projektzaldatalake2020.dfs.core.windows.net"
+		},
 		"ProjZalKeyVault_properties_typeProperties_baseUrl": {
 			"value": "https://ProjZal2020KeyVault.vault.azure.net/"
 		},
 		"S3Connection_properties_typeProperties_accessKeyId": {
 			"value": "AKIAIDNCNSE65LTVUTYA"
-		},
-		"DataLakeGen2Connection_properties_typeProperties_url": {
-			"value": "https://projektzaldatalake2020.dfs.core.windows.net"
 		},
 		"SourceMetadata_properties_typeProperties_url": {
 			"value": "https://projektzaldatalake2020.dfs.core.windows.net"
