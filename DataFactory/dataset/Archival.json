@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"folderPath": {
-					"value": "archived/@{formatDateTime(utcnow(),'yyyy')}/@{formatDateTime(utcnow(),'MM')}/@{formatDateTime(utcnow(),'dd')}",
+					"value": "archived/@{formatDateTime(utcnow(),'yyyy')}-@{formatDateTime(utcnow(),'MM')}-@{formatDateTime(utcnow(),'dd')}",
 					"type": "Expression"
 				},
 				"fileSystem": "input"
